@@ -1,0 +1,9 @@
+	<h2>Entr&eacute;e </h2>
+
+	<h3>Veuillez charger votre empreinte pour identification.</h3>
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ my_form.as_p }}
+  <input type="submit" value="Submit"/>
+</form>

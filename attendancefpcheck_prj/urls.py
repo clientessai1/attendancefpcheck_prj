@@ -14,8 +14,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
+from django.contrib import admin;
+from django.urls import path, include;
+from django.conf import settings; #New
+from django.conf.urls.static import static; #New
 
 admin.site.site_header = "Attendance FP Check"	  # Texte de Personnalisé num 1
 admin.site.site_title = "Attendance FP Check Portal" # Texte de Personnalisé num 2
@@ -24,4 +26,7 @@ admin.site.index_title = "Check Attendance by FingerPrint" # Texte de Personnali
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('app_extends.urls')),
 ]
+if settings.DEBUG:
+    urlpatterns += static( settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
