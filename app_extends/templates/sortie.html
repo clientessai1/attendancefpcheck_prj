@@ -1,10 +1,51 @@
+{% extends "home.html" %}
 
-	<h2>Sortie</h2>
+{% block description_page %}
+<div style="">
+	<h1>Pour sortir :</h1>
+	<br/>
+	<br/>
 
-	<h3>Veuillez charger votre empreinte pour identification.</h3>
+	<li style="display:block;">
+	  <ul>
+		<h3>Veuillez charger votre empreinte pour v&eacute;rification.</h3>
+	  </ul>
+	</li>
+</div>
 
+{% endblock %}
+
+{% block contenu_page %}
+
+
+
+{% if message_erreur %}
+    <h3 class="message_erreur">
+	  <!-- <h3 style="color: red; font-weight: bold;"> -->
+		[ ACCES REFUSE ]
+	</h3>
+{% endif %}
+
+
+{% if my_form %}
+<fieldset> 
+  <legend>FORMULAIRE DE SORTIE</legend>
 <form method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   {{ my_form.as_p }}
-  <input type="submit" value="Submit"/>
+  <input type="submit" value="V&eacute;rifier"/>
 </form>
+</fieldset>
+
+{% if message_erreur %}
+<!-- <h3 style="-webkit-text-stroke: thin black; color: red;-webkit-text-fill-color: GoldenRod; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;font-weight: bold;"> -->
+    <h3 class="message_erreur">
+		{{ message_erreur }}
+	</h3>
+{% endif %}
+
+{% endif %}
+
+
+{% endblock %}
+

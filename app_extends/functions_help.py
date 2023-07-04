@@ -70,9 +70,11 @@ def checkFingerPrintMatchV1(original_img_folder, sample):
         print("Score : "+str(best_score));
         result = cv2.drawMatches(sample,  kp_orig, image, kp_samp, mp, None);
         result = cv2.resize(result, None, fx=4, fy=4);
+        '''
         cv2.imshow("Result ", result); 
         cv2.waitKey(0);
         cv2.destroyAllWindows();
+        '''
         resultat = {};
 
         resultat['filename'] = filename;

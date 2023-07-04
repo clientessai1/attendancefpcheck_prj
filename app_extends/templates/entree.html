@@ -1,0 +1,48 @@
+{% extends "home.html" %}
+
+{% block description_page %}
+
+<div style="">
+	<h1>Pour entrer :</h1>
+	<br/>
+	<br/>
+
+	<li style="display:block;">
+	  <ul>
+		<h3>Veuillez charger votre empreinte pour v&eacute;rification.</h3>
+	  </ul>
+	</li>
+</div>
+{% endblock %}
+
+{% block contenu_page %}
+
+
+{% if message_erreur %}
+    <h3 class="message_erreur">
+	  <!-- <h3 style="color: red; font-weight: bold;"> -->
+		[ ACCES REFUSE ]
+	</h3>
+{% endif %}
+
+{% if my_form %}
+<fieldset> 
+  <legend>FORMULAIRE D'ENTREE</legend>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ my_form.as_p }}
+  <input type="submit" value="V&eacute;rifier"/>
+</form>
+</fieldset>
+
+{% if message_erreur %}
+    <h3 class="message_erreur">
+		{{ message_erreur }}
+	</h3>
+{% endif %}
+
+
+{% endif %}
+
+{% endblock %}
+

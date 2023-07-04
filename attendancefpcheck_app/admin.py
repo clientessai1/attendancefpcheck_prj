@@ -39,7 +39,7 @@ class LecteurAdmin(admin.ModelAdmin):
 
 class EmpreinteAdmin(admin.ModelAdmin):
     search_fields = ('user', 'type_empreinte') #Faire apparaître le champ de recherche 
-    list_display = ('user', 'type_empreinte', 'minutie', 'image_tag') # Affiche les deux colonnes en Page Admin
+    list_display = ('user', 'type_empreinte', 'image_tag', 'minutie') # Affiche les deux colonnes en Page Admin
     list_filter = ('user', 'type_empreinte') # Affiche les deux colonnes en Page Admin
     pass;
 

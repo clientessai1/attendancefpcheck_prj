@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin;
-from django.urls import path, include;
+from django.urls import path, include, re_path;
 from django.conf import settings; #New
 from django.conf.urls.static import static; #New
 
@@ -26,7 +26,14 @@ admin.site.index_title = "Check Attendance by FingerPrint" # Texte de Personnali
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #path(r'^/$', include('app_extends.urls')),
+    #path('/', include('app_extends.urls')),
+    #path('/?P<message>', include('app_extends.urls')),
+    #path(r'<str:message_succes>[\w]', include('app_extends.urls')),
+    #re_path(r'<str:message_succes>[\w]', include('app_extends.urls')),
     path('', include('app_extends.urls')),
+    #re_path(r'^(?P<message_succes>[\w\[\]]+)', include('app_extends.urls')),
+    #re_path(r'^[\w\[\]]+', include('app_extends.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static( settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

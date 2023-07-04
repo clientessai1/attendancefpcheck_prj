@@ -89,6 +89,15 @@ class Entreprise(models.Model):
 class Employee(models.Model):
     id = models.AutoField(primary_key=True);
     user = models.OneToOneField(User, on_delete=models.CASCADE);
+    nom = models.CharField(max_length=250, blank=False, null=False, default='');
+    prenoms = models.CharField(max_length=250, blank=False, null=False, default='');
+    type_list = ['M','Mme',];
+    ALL_TYPE = sorted([(item, item) for item in type_list]);
+    type_civilite= models.CharField(
+            #default='M',
+            max_length=20, 
+            choices=ALL_TYPE,
+            );
     entreprise = models.ForeignKey(Entreprise, on_delete=models.CASCADE, blank=False, null=False);
     pass;
 
