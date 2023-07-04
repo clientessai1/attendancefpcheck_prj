@@ -5,7 +5,7 @@ import os;
 import cv2;
 import numpy;
 from .functions_help import checkFingerPrintMatchV1;
-from attendancefpcheck_app.models import Authentification, User;
+from attendancefpcheck_app.models import Authentification, User, Employee;
 #(original_img_folder, suspected_img_path):
 
 # Create your views here
@@ -64,8 +64,9 @@ def demandeEntree(request):
                 if array_str != None:
                     if len(array_str) > 1:
                         username = array_str[0];
-                        username_sup = f" M/Mme. {username} ";
+                        #username_sup = f" M/Mme. {username} ";
                         objet_user = User.objects.get(username=username);
+                        username_sup = "{}. {} {} ".format(objet_user.employee.type_civilite, objet_user.employee.nom, objet_user.employee.prenoms);
                         objet_auth = Authentification.objects.create(user=objet_user, type_auth ='Entree');
                         print(objet_auth);
                         print("= = = FINNNNNN= = = ");
@@ -143,8 +144,9 @@ def demandeSortie(request):
                 if array_str != None:
                     if len(array_str) > 1:
                         username = array_str[0];
-                        username_sup = f" M/Mme. {username} ";
+                        #username_sup = f" M/Mme. {username} ";
                         objet_user = User.objects.get(username=username);
+                        username_sup = "{}. {} {} ".format(objet_user.employee.type_civilite, objet_user.employee.nom, objet_user.employee.prenoms);
                         objet_auth = Authentification.objects.create(user=objet_user, type_auth ='Sortie');
                         print(objet_auth);
                         print("= = = FINNNNNN Sortie = = = ");
