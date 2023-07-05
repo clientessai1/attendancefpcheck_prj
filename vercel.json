@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "attendancefpcheck_prj/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "attendancefpcheck_prj/wsgi.py"
+      }
+    ]
+}
