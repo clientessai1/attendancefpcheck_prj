@@ -11,6 +11,8 @@ from attendancefpcheck_app.models import Authentification, User, Employee;
 # Create your views here
 from django.shortcuts import HttpResponse;
 from urllib.parse import urlencode, unquote_plus;
+import os;
+from django.conf import settings;
 
 
 def home(request, message_succes=None):
@@ -23,6 +25,11 @@ def home(request, message_succes=None):
     print(" + + + + + + + + + + ");
     return render(request, 'home.html', my_context);
     #return HttpResponse("<h3>Cool</h3>");
+
+def getMediaFolderPath():
+    media_root = settings.MEDIA_ROOT;
+    photos_folder_path = os.path.join(media_root, 'photos');
+    return  photos_folder_path;
 
 # = = = = = = 
 def demandeEntree(request):
@@ -38,7 +45,7 @@ def demandeEntree(request):
             #Est tres long
             #print(fp_img_field.read());
             #chemin_tamp = fp_img_field.temporary_file_path();
-            original_img_folder = "./media/photos";
+            original_img_folder = getMediaFolderPath(); # "./media/photos";
             #sample = cv2.imread(chemin_tamp);
             #sample = cv2.imread(fp_img_field.read());
 
@@ -118,7 +125,7 @@ def demandeSortie(request):
             #Est tres long
             #print(fp_img_field.read());
             #chemin_tamp = fp_img_field.temporary_file_path();
-            original_img_folder = "./media/photos";
+            original_img_folder = getMediaFolderPath(); #"./media/photos";
             #sample = cv2.imread(chemin_tamp);
             #sample = cv2.imread(fp_img_field.read());
 
