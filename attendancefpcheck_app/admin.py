@@ -53,11 +53,19 @@ class EntrepriseAdmin(admin.ModelAdmin):
 
 class AuthentificationAdmin(admin.ModelAdmin):
     #search_fields = ('entreprise', 'user',) #Faire apparaître le champ de recherche 
-    search_fields = ('user','user_entreprise', ) #Faire apparaître le champ de recherche 
+    #Search_fields affiche une erreure a corriger plus tard.==Meri==
+    #search_fields = ('user','user_entreprise', ) #Faire apparaître le champ de recherche 
     #list_display = ('entreprise', 'user', 'date_heure_entree', 'date_heure_sortie',) # Affiche les deux colonnes en Page Admin
-    list_display = ('user', 'type_auth', 'date', 'heure','user_entreprise', ) # Affiche les deux colonnes en Page Admin
+    list_display = ('fullName', 'type_auth', 'date', 'heure','user_entreprise', ) # Affiche les deux colonnes en Page Admin
     #list_filter = ('entreprise', 'user') # Affiche un champ de filtre sur les domaines
     list_filter = ('user',) # Affiche un champ de filtre sur les domaines
+
+    def fullName(self, obj):
+        nom = obj.user.employee.nom;
+        prenoms = obj.user.employee.prenoms;
+        full_name = f"{nom} {prenoms}";
+        return full_name; 
+
     pass;
 
 
